@@ -2677,7 +2677,7 @@ GlobalGeometryRules,
 !-   ===========  ALL OBJECTS IN CLASS: ZONE ===========
 
 Zone,
-    Thermal Zone 1,          !- Name
+    Cafe,                    !- Name
     ,                        !- Direction of Relative North {deg}
     13.8424093929143,        !- X Origin {m}
     -0.14757026516639,       !- Y Origin {m}
@@ -2690,7 +2690,7 @@ BuildingSurface:Detailed,
     Este,                    !- Name
     Wall,                    !- Surface Type
     ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5,  !- Construction Name
-    Thermal Zone 1,          !- Zone Name
+    Cafe,                    !- Zone Name
     ,                        !- Space Name
     Outdoors,                !- Outside Boundary Condition
     ,                        !- Outside Boundary Condition Object
@@ -2715,7 +2715,7 @@ BuildingSurface:Detailed,
     Norte,                   !- Name
     Wall,                    !- Surface Type
     ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5,  !- Construction Name
-    Thermal Zone 1,          !- Zone Name
+    Cafe,                    !- Zone Name
     ,                        !- Space Name
     Outdoors,                !- Outside Boundary Condition
     ,                        !- Outside Boundary Condition Object
@@ -2740,7 +2740,7 @@ BuildingSurface:Detailed,
     Oeste,                   !- Name
     Wall,                    !- Surface Type
     ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5,  !- Construction Name
-    Thermal Zone 1,          !- Zone Name
+    Cafe,                    !- Zone Name
     ,                        !- Space Name
     Outdoors,                !- Outside Boundary Condition
     ,                        !- Outside Boundary Condition Object
@@ -2765,7 +2765,7 @@ BuildingSurface:Detailed,
     Piso,                    !- Name
     Floor,                   !- Surface Type
     ExtSlabCarpet 4in ClimateZone 1-8,  !- Construction Name
-    Thermal Zone 1,          !- Zone Name
+    Cafe,                    !- Zone Name
     ,                        !- Space Name
     Adiabatic,               !- Outside Boundary Condition
     ,                        !- Outside Boundary Condition Object
@@ -2790,7 +2790,7 @@ BuildingSurface:Detailed,
     Sur,                     !- Name
     Wall,                    !- Surface Type
     ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5,  !- Construction Name
-    Thermal Zone 1,          !- Zone Name
+    Cafe,                    !- Zone Name
     ,                        !- Space Name
     Outdoors,                !- Outside Boundary Condition
     ,                        !- Outside Boundary Condition Object
@@ -2815,7 +2815,7 @@ BuildingSurface:Detailed,
     Techo,                   !- Name
     Roof,                    !- Surface Type
     ASHRAE 189.1-2009 ExtRoof IEAD ClimateZone 2-5,  !- Construction Name
-    Thermal Zone 1,          !- Zone Name
+    Cafe,                    !- Zone Name
     ,                        !- Space Name
     Outdoors,                !- Outside Boundary Condition
     ,                        !- Outside Boundary Condition Object
@@ -2917,6 +2917,119 @@ WindowProperty:FrameAndDivider,
     CurtainWall;             !- NFRC Product Type for Assembly Calculations
 
 
+!-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:SIMULATIONCONTROL ===========
+
+AirflowNetwork:SimulationControl,
+    Cafeteria,               !- Name
+    MultizoneWithoutDistribution,  !- AirflowNetwork Control
+    SurfaceAverageCalculation,  !- Wind Pressure Coefficient Type
+    OpeningHeight,           !- Height Selection for Local Wind Pressure Calculation
+    LowRise,                 !- Building Type
+    500,                     !- Maximum Number of Iterations {dimensionless}
+    ZeroNodePressures,       !- Initialization Type
+    0.0001,                  !- Relative Airflow Convergence Tolerance {dimensionless}
+    0.000001,                !- Absolute Airflow Convergence Tolerance {kg/s}
+    -.5,                     !- Convergence Acceleration Limit {dimensionless}
+    0,                       !- Azimuth Angle of Long Axis of Building {deg}
+    0.71,                    !- Ratio of Building Width Along Short Axis to Width Along Long Axis
+    No,                      !- Height Dependence of External Node Temperature
+    SkylineLU,               !- Solver
+    ,                        !- Allow Unsupported Zone Equipment
+    ;                        !- Do Distribution Duct Sizing Calculation
+
+
+!-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:ZONE ===========
+
+AirflowNetwork:MultiZone:Zone,
+    Cafe,                    !- Zone Name
+    Constant,                !- Ventilation Control Mode
+    ,                        !- Ventilation Control Zone Temperature Setpoint Schedule Name
+    ,                        !- Minimum Venting Open Factor {dimensionless}
+    ,                        !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
+    100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
+    ,                        !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
+    300000,                  !- Indoor and Outdoor Enthalpy Difference Upper Limit for Minimum Venting Open Factor {deltaJ/kg}
+    ,                        !- Venting Availability Schedule Name
+    Standard,                !- Single Sided Wind Pressure Coefficient Algorithm
+    10;                      !- Facade Width {m}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:SURFACE ===========
+
+AirflowNetwork:MultiZone:Surface,
+    VEste,                   !- Surface Name
+    Aperturas_Ventanas,      !- Leakage Component Name
+    ,                        !- External Node Name
+    1,                       !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    ZoneLevel,               !- Ventilation Control Mode
+    ,                        !- Ventilation Control Zone Temperature Setpoint Schedule Name
+    ,                        !- Minimum Venting Open Factor {dimensionless}
+    ,                        !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
+    100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
+    ,                        !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
+    300000,                  !- Indoor and Outdoor Enthalpy Difference Upper Limit for Minimum Venting Open Factor {deltaJ/kg}
+    ,                        !- Venting Availability Schedule Name
+    ,                        !- Occupant Ventilation Control Name
+    PolygonHeight,           !- Equivalent Rectangle Method
+    1;                       !- Equivalent Rectangle Aspect Ratio {dimensionless}
+
+AirflowNetwork:MultiZone:Surface,
+    VOeste,                  !- Surface Name
+    Aperturas_Ventanas,      !- Leakage Component Name
+    ,                        !- External Node Name
+    1,                       !- Window/Door Opening Factor, or Crack Factor {dimensionless}
+    ZoneLevel,               !- Ventilation Control Mode
+    ,                        !- Ventilation Control Zone Temperature Setpoint Schedule Name
+    ,                        !- Minimum Venting Open Factor {dimensionless}
+    ,                        !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
+    100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
+    ,                        !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
+    300000,                  !- Indoor and Outdoor Enthalpy Difference Upper Limit for Minimum Venting Open Factor {deltaJ/kg}
+    ,                        !- Venting Availability Schedule Name
+    ,                        !- Occupant Ventilation Control Name
+    PolygonHeight,           !- Equivalent Rectangle Method
+    1;                       !- Equivalent Rectangle Aspect Ratio {dimensionless}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:REFERENCECRACKCONDITIONS ===========
+
+AirflowNetwork:MultiZone:ReferenceCrackConditions,
+    Referencia,              !- Name
+    20,                      !- Reference Temperature {C}
+    87699.24,                !- Reference Barometric Pressure {Pa}
+    0.000000001;             !- Reference Humidity Ratio {kgWater/kgDryAir}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:SURFACE:CRACK ===========
+
+AirflowNetwork:MultiZone:Surface:Crack,
+    Infiltracion,            !- Name
+    0.5,                     !- Air Mass Flow Coefficient at Reference Conditions {kg/s}
+    0.65,                    !- Air Mass Flow Exponent {dimensionless}
+    Referencia;              !- Reference Crack Conditions
+
+
+!-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:COMPONENT:DETAILEDOPENING ===========
+
+AirflowNetwork:MultiZone:Component:DetailedOpening,
+    Aperturas_Ventanas,      !- Name
+    0.001,                   !- Air Mass Flow Coefficient When Opening is Closed {kg/s-m}
+    0.667,                   !- Air Mass Flow Exponent When Opening is Closed {dimensionless}
+    NonPivoted,              !- Type of Rectangular Large Vertical Opening (LVO)
+    ,                        !- Extra Crack Length or Height of Pivoting Axis {m}
+    2,                       !- Number of Sets of Opening Factor Data
+    0,                       !- Opening Factor 1 {dimensionless}
+    0.001,                   !- Discharge Coefficient for Opening Factor 1 {dimensionless}
+    0,                       !- Width Factor for Opening Factor 1 {dimensionless}
+    0,                       !- Height Factor for Opening Factor 1 {dimensionless}
+    0,                       !- Start Height Factor for Opening Factor 1 {dimensionless}
+    1,                       !- Opening Factor 2 {dimensionless}
+    0.5,                     !- Discharge Coefficient for Opening Factor 2 {dimensionless}
+    1,                       !- Width Factor for Opening Factor 2 {dimensionless}
+    1,                       !- Height Factor for Opening Factor 2 {dimensionless}
+    0;                       !- Start Height Factor for Opening Factor 2 {dimensionless}
+
+
 !-   ===========  ALL OBJECTS IN CLASS: SIZING:PARAMETERS ===========
 
 Sizing:Parameters,
@@ -2981,6 +3094,59 @@ OutputControl:Table:Style,
 OutputControl:ReportingTolerances,
     0.2,                     !- Tolerance for Time Heating Setpoint Not Met {deltaC}
     0.2;                     !- Tolerance for Time Cooling Setpoint Not Met {deltaC}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:VARIABLE ===========
+
+Output:Variable,
+    *,                       !- Key Value
+    Site Outdoor Air Drybulb Temperature,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Site Outdoor Air Wetbulb Temperature,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Site Outdoor Air Relative Humidity,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Site Outdoor Air Barometric Pressure,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Site Wind Speed,         !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Site Wind Direction,     !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Zone Mean Air Temperature,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Zone Air Relative Humidity,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    AFN Linkage Node 1 to Node 2 Volume Flow Rate,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    AFN Linkage Node 2 to Node 1 Volume Flow Rate,  !- Variable Name
+    Timestep;                !- Reporting Frequency
 
 
 !-   ===========  ALL OBJECTS IN CLASS: OUTPUT:SQLITE ===========
