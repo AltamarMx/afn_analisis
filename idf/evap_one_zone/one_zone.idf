@@ -46,18 +46,6 @@ ShadowCalculation,
     SutherlandHodgman;       !- Polygon Clipping Algorithm
 
 
-!-   ===========  ALL OBJECTS IN CLASS: SURFACECONVECTIONALGORITHM:INSIDE ===========
-
-SurfaceConvectionAlgorithm:Inside,
-    TARP;                    !- Algorithm
-
-
-!-   ===========  ALL OBJECTS IN CLASS: SURFACECONVECTIONALGORITHM:OUTSIDE ===========
-
-SurfaceConvectionAlgorithm:Outside,
-    DOE-2;                   !- Algorithm
-
-
 !-   ===========  ALL OBJECTS IN CLASS: HEATBALANCEALGORITHM ===========
 
 HeatBalanceAlgorithm,
@@ -72,21 +60,12 @@ ZoneAirHeatBalanceAlgorithm,
     No;                      !- Do Space Heat Balance for Sizing
 
 
-!-   ===========  ALL OBJECTS IN CLASS: ZONEAIRCONTAMINANTBALANCE ===========
+!-   ===========  ALL OBJECTS IN CLASS: ZONEAIRMASSFLOWCONSERVATION ===========
 
-ZoneAirContaminantBalance,
-    No;                      !- Carbon Dioxide Concentration
-
-
-!-   ===========  ALL OBJECTS IN CLASS: ZONECAPACITANCEMULTIPLIER:RESEARCHSPECIAL ===========
-
-ZoneCapacitanceMultiplier:ResearchSpecial,
-    Zone Capacitance Multiplier Research Special,  !- Name
-    ,                        !- Zone or ZoneList Name
-    ,                        !- Temperature Capacity Multiplier
-    ,                        !- Humidity Capacity Multiplier
-    ,                        !- Carbon Dioxide Capacity Multiplier
-    ;                        !- Generic Contaminant Capacity Multiplier
+ZoneAirMassFlowConservation,
+    None,                    !- Adjust Zone Mixing and Return For Air Mass Flow Balance
+    None,                    !- Infiltration Balancing Method
+    AllZones;                !- Infiltration Balancing Zones
 
 
 !-   ===========  ALL OBJECTS IN CLASS: TIMESTEP ===========
@@ -220,1829 +199,140 @@ ScheduleTypeLimits,
     Continuous,              !- Numeric Type
     temperature;             !- Unit Type
 
-
-!-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:DAY:INTERVAL ===========
-
-Schedule:Day:Interval,
-    Large Office Activity Default Schedule,  !- Name
-    ActivityLevel 5,         !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    120;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Activity Summer Design Day,  !- Name
-    ActivityLevel 5,         !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    120;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Activity Winter Design Day,  !- Name
-    ActivityLevel 5,         !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    120;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Bldg Equip Default Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    08:00,                   !- Time 1 {hh:mm}
-    0.4,                     !- Value Until Time 1
-    12:00,                   !- Time 2 {hh:mm}
-    0.9,                     !- Value Until Time 2
-    13:00,                   !- Time 3 {hh:mm}
-    0.8,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.9,                     !- Value Until Time 4
-    18:00,                   !- Time 5 {hh:mm}
-    0.8,                     !- Value Until Time 5
-    20:00,                   !- Time 6 {hh:mm}
-    0.6,                     !- Value Until Time 6
-    22:00,                   !- Time 7 {hh:mm}
-    0.5,                     !- Value Until Time 7
-    24:00,                   !- Time 8 {hh:mm}
-    0.4;                     !- Value Until Time 8
-
-Schedule:Day:Interval,
-    Large Office Bldg Equip Rule 1 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0.3;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Bldg Equip Rule 2 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0.3,                     !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.4,                     !- Value Until Time 2
-    14:00,                   !- Time 3 {hh:mm}
-    0.5,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.35,                    !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0.3;                     !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Large Office Bldg Equip Summer Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Bldg Equip Winter Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Bldg Light Default Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    05:00,                   !- Time 1 {hh:mm}
-    0.05,                    !- Value Until Time 1
-    07:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    08:00,                   !- Time 3 {hh:mm}
-    0.3,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.9,                     !- Value Until Time 4
-    18:00,                   !- Time 5 {hh:mm}
-    0.7,                     !- Value Until Time 5
-    20:00,                   !- Time 6 {hh:mm}
-    0.5,                     !- Value Until Time 6
-    22:00,                   !- Time 7 {hh:mm}
-    0.3,                     !- Value Until Time 7
-    23:00,                   !- Time 8 {hh:mm}
-    0.1,                     !- Value Until Time 8
-    24:00,                   !- Time 9 {hh:mm}
-    0.05;                    !- Value Until Time 9
-
-Schedule:Day:Interval,
-    Large Office Bldg Light Rule 1 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0.05;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Bldg Light Rule 2 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0.05,                    !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    14:00,                   !- Time 3 {hh:mm}
-    0.5,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.15,                    !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0.05;                    !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Large Office Bldg Light Summer Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Bldg Light Winter Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Bldg Occ Default Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    07:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    08:00,                   !- Time 3 {hh:mm}
-    0.2,                     !- Value Until Time 3
-    12:00,                   !- Time 4 {hh:mm}
-    0.95,                    !- Value Until Time 4
-    13:00,                   !- Time 5 {hh:mm}
-    0.5,                     !- Value Until Time 5
-    17:00,                   !- Time 6 {hh:mm}
-    0.95,                    !- Value Until Time 6
-    18:00,                   !- Time 7 {hh:mm}
-    0.7,                     !- Value Until Time 7
-    20:00,                   !- Time 8 {hh:mm}
-    0.4,                     !- Value Until Time 8
-    22:00,                   !- Time 9 {hh:mm}
-    0.1,                     !- Value Until Time 9
-    24:00,                   !- Time 10 {hh:mm}
-    0.05;                    !- Value Until Time 10
-
-Schedule:Day:Interval,
-    Large Office Bldg Occ Rule 1 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Bldg Occ Rule 2 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    14:00,                   !- Time 3 {hh:mm}
-    0.5,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.1,                     !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0;                       !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Large Office Bldg Occ Summer Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    1,                       !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    0.05;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Large Office Bldg Occ Winter Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office ClgSetp Default Schedule,  !- Name
-    Temperature 5,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    26.7,                    !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    24,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    26.7;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Large Office ClgSetp Rule 1 Day Schedule,  !- Name
-    Temperature 5,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    26.7;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office ClgSetp Rule 2 Day Schedule,  !- Name
-    Temperature 5,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    26.7,                    !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    24,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    26.7;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Large Office ClgSetp Summer Design Day,  !- Name
-    Temperature 5,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    26.7,                    !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    24,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    26.7;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Large Office ClgSetp Winter Design Day,  !- Name
-    Temperature 5,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    26.7;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office HtgSetp Default Schedule,  !- Name
-    Temperature 3,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    15.6,                    !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    21,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    15.6;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Large Office HtgSetp Rule 1 Day Schedule,  !- Name
-    Temperature 3,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    15.6;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office HtgSetp Rule 2 Day Schedule,  !- Name
-    Temperature 3,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    15.6,                    !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    21,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    15.6;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Large Office HtgSetp Summer Design Day,  !- Name
-    Temperature 3,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    15.6;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office HtgSetp Winter Design Day,  !- Name
-    Temperature 3,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    21;                      !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Infil Quarter On Default Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Large Office Infil Quarter On Rule 1 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Large Office Infil Quarter On Rule 2 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Large Office Infil Quarter On Summer Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Large Office Infil Quarter On Winter Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office Activity Default Schedule,  !- Name
-    ActivityLevel 13,        !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    120;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office Activity Summer Design Day,  !- Name
-    ActivityLevel 13,        !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    120;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office Activity Winter Design Day,  !- Name
-    ActivityLevel 13,        !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    120;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office Bldg Equip Default Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    08:00,                   !- Time 1 {hh:mm}
-    0.4,                     !- Value Until Time 1
-    12:00,                   !- Time 2 {hh:mm}
-    0.9,                     !- Value Until Time 2
-    13:00,                   !- Time 3 {hh:mm}
-    0.8,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.9,                     !- Value Until Time 4
-    18:00,                   !- Time 5 {hh:mm}
-    0.8,                     !- Value Until Time 5
-    20:00,                   !- Time 6 {hh:mm}
-    0.6,                     !- Value Until Time 6
-    22:00,                   !- Time 7 {hh:mm}
-    0.5,                     !- Value Until Time 7
-    24:00,                   !- Time 8 {hh:mm}
-    0.4;                     !- Value Until Time 8
-
-Schedule:Day:Interval,
-    Medium Office Bldg Equip Rule 1 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0.3;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office Bldg Equip Rule 2 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0.3,                     !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.4,                     !- Value Until Time 2
-    14:00,                   !- Time 3 {hh:mm}
-    0.5,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.35,                    !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0.3;                     !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Medium Office Bldg Equip Summer Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office Bldg Equip Winter Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office Bldg Occ Default Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    07:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    08:00,                   !- Time 3 {hh:mm}
-    0.2,                     !- Value Until Time 3
-    12:00,                   !- Time 4 {hh:mm}
-    0.95,                    !- Value Until Time 4
-    13:00,                   !- Time 5 {hh:mm}
-    0.5,                     !- Value Until Time 5
-    17:00,                   !- Time 6 {hh:mm}
-    0.95,                    !- Value Until Time 6
-    18:00,                   !- Time 7 {hh:mm}
-    0.7,                     !- Value Until Time 7
-    20:00,                   !- Time 8 {hh:mm}
-    0.4,                     !- Value Until Time 8
-    22:00,                   !- Time 9 {hh:mm}
-    0.1,                     !- Value Until Time 9
-    24:00,                   !- Time 10 {hh:mm}
-    0.05;                    !- Value Until Time 10
-
-Schedule:Day:Interval,
-    Medium Office Bldg Occ Rule 1 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office Bldg Occ Rule 2 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    14:00,                   !- Time 3 {hh:mm}
-    0.5,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.1,                     !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0;                       !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Medium Office Bldg Occ Summer Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    1,                       !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    0.05;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office Bldg Occ Winter Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office ClgSetp Default Schedule,  !- Name
-    Temperature 37,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    26.7,                    !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    24,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    26.7;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office ClgSetp Rule 1 Day Schedule,  !- Name
-    Temperature 37,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    26.7;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office ClgSetp Rule 2 Day Schedule,  !- Name
-    Temperature 37,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    26.7,                    !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    24,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    26.7;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office ClgSetp Summer Design Day,  !- Name
-    Temperature 37,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    26.7,                    !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    24,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    26.7;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office ClgSetp Winter Design Day,  !- Name
-    Temperature 37,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    26.7;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office HtgSetp Default Schedule,  !- Name
-    Temperature 36,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    15.6,                    !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    21,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    15.6;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office HtgSetp Rule 1 Day Schedule,  !- Name
-    Temperature 36,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    15.6;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office HtgSetp Rule 2 Day Schedule,  !- Name
-    Temperature 36,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    15.6,                    !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    21,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    15.6;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office HtgSetp Summer Design Day,  !- Name
-    Temperature 36,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    15.6;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office HtgSetp Winter Design Day,  !- Name
-    Temperature 36,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    21;                      !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office Infil Quarter On Default Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office Infil Quarter On Rule 1 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Medium Office Infil Quarter On Rule 2 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office Infil Quarter On Summer Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Medium Office Infil Quarter On Winter Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Office Activity Default Schedule,  !- Name
-    ActivityLevel,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    132;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Activity Summer Design Day,  !- Name
-    ActivityLevel,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    132;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Activity Winter Design Day,  !- Name
-    ActivityLevel,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    132;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Equip Default Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    08:00,                   !- Time 1 {hh:mm}
-    0.4,                     !- Value Until Time 1
-    12:00,                   !- Time 2 {hh:mm}
-    0.9,                     !- Value Until Time 2
-    13:00,                   !- Time 3 {hh:mm}
-    0.8,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.9,                     !- Value Until Time 4
-    18:00,                   !- Time 5 {hh:mm}
-    0.8,                     !- Value Until Time 5
-    20:00,                   !- Time 6 {hh:mm}
-    0.6,                     !- Value Until Time 6
-    22:00,                   !- Time 7 {hh:mm}
-    0.5,                     !- Value Until Time 7
-    24:00,                   !- Time 8 {hh:mm}
-    0.4;                     !- Value Until Time 8
-
-Schedule:Day:Interval,
-    Office Bldg Equip Rule 1 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0.3;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Equip Rule 2 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0.3,                     !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.4,                     !- Value Until Time 2
-    14:00,                   !- Time 3 {hh:mm}
-    0.5,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.35,                    !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0.3;                     !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Office Bldg Equip Summer Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Equip Winter Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Light Default Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    05:00,                   !- Time 1 {hh:mm}
-    0.05,                    !- Value Until Time 1
-    07:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    08:00,                   !- Time 3 {hh:mm}
-    0.3,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.9,                     !- Value Until Time 4
-    18:00,                   !- Time 5 {hh:mm}
-    0.7,                     !- Value Until Time 5
-    20:00,                   !- Time 6 {hh:mm}
-    0.5,                     !- Value Until Time 6
-    22:00,                   !- Time 7 {hh:mm}
-    0.3,                     !- Value Until Time 7
-    23:00,                   !- Time 8 {hh:mm}
-    0.1,                     !- Value Until Time 8
-    24:00,                   !- Time 9 {hh:mm}
-    0.05;                    !- Value Until Time 9
-
-Schedule:Day:Interval,
-    Office Bldg Light Rule 1 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0.05;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Light Rule 2 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0.05,                    !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    14:00,                   !- Time 3 {hh:mm}
-    0.5,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.15,                    !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0.05;                    !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Office Bldg Light Summer Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Light Winter Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Occ Default Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    07:00,                   !- Time 2 {hh:mm}
-    0.100000001490116,       !- Value Until Time 2
-    08:00,                   !- Time 3 {hh:mm}
-    0.200000002980232,       !- Value Until Time 3
-    12:00,                   !- Time 4 {hh:mm}
-    0.850000023841858,       !- Value Until Time 4
-    13:00,                   !- Time 5 {hh:mm}
-    0.5,                     !- Value Until Time 5
-    17:00,                   !- Time 6 {hh:mm}
-    0.850000023841858,       !- Value Until Time 6
-    18:00,                   !- Time 7 {hh:mm}
-    0.699999988079071,       !- Value Until Time 7
-    20:00,                   !- Time 8 {hh:mm}
-    0.400000005960464,       !- Value Until Time 8
-    22:00,                   !- Time 9 {hh:mm}
-    0.100000001490116,       !- Value Until Time 9
-    24:00,                   !- Time 10 {hh:mm}
-    0.0500000007450581;      !- Value Until Time 10
-
-Schedule:Day:Interval,
-    Office Bldg Occ Default Schedule 1,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    07:00,                   !- Time 2 {hh:mm}
-    0.100000001490116,       !- Value Until Time 2
-    08:00,                   !- Time 3 {hh:mm}
-    0.200000002980232,       !- Value Until Time 3
-    20:00,                   !- Time 4 {hh:mm}
-    0.400000005960464,       !- Value Until Time 4
-    22:00,                   !- Time 5 {hh:mm}
-    0.100000001490116,       !- Value Until Time 5
-    24:00,                   !- Time 6 {hh:mm}
-    0.0500000007450581;      !- Value Until Time 6
-
-Schedule:Day:Interval,
-    Office Bldg Occ Rule 1 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Occ Rule 1 Day Schedule 1,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Occ Rule 2 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.100000001490116,       !- Value Until Time 2
-    14:00,                   !- Time 3 {hh:mm}
-    0.400000005960464,       !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.100000001490116,       !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0;                       !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Office Bldg Occ Rule 2 Day Schedule 1,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.100000001490116,       !- Value Until Time 2
-    14:00,                   !- Time 3 {hh:mm}
-    0.25,                    !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.100000001490116,       !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0;                       !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Office Bldg Occ Summer Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    1,                       !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    0.05;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Office Bldg Occ Summer Design Day 1,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    1,                       !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    0.05;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Office Bldg Occ Winter Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Bldg Occ Winter Design Day 1,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Infil Quarter On Default Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Office Infil Quarter On Rule 1 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Office Infil Quarter On Rule 2 Day Schedule,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Office Infil Quarter On Summer Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Office Infil Quarter On Winter Design Day,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office Activity Default Schedule,  !- Name
-    ActivityLevel 12,        !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    120;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office Activity Summer Design Day,  !- Name
-    ActivityLevel 12,        !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    120;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office Activity Winter Design Day,  !- Name
-    ActivityLevel 12,        !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    120;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office Bldg Equip Default Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    08:00,                   !- Time 1 {hh:mm}
-    0.4,                     !- Value Until Time 1
-    12:00,                   !- Time 2 {hh:mm}
-    0.9,                     !- Value Until Time 2
-    13:00,                   !- Time 3 {hh:mm}
-    0.8,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.9,                     !- Value Until Time 4
-    18:00,                   !- Time 5 {hh:mm}
-    0.5,                     !- Value Until Time 5
-    24:00,                   !- Time 6 {hh:mm}
-    0.4;                     !- Value Until Time 6
-
-Schedule:Day:Interval,
-    Small Office Bldg Equip Rule 1 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0.3;                     !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office Bldg Equip Rule 2 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0.3,                     !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.4,                     !- Value Until Time 2
-    12:00,                   !- Time 3 {hh:mm}
-    0.5,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.35,                    !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0.3;                     !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Small Office Bldg Equip Summer Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office Bldg Equip Winter Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office Bldg Occ Default Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    07:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    08:00,                   !- Time 3 {hh:mm}
-    0.2,                     !- Value Until Time 3
-    12:00,                   !- Time 4 {hh:mm}
-    0.95,                    !- Value Until Time 4
-    13:00,                   !- Time 5 {hh:mm}
-    0.5,                     !- Value Until Time 5
-    17:00,                   !- Time 6 {hh:mm}
-    0.95,                    !- Value Until Time 6
-    18:00,                   !- Time 7 {hh:mm}
-    0.3,                     !- Value Until Time 7
-    20:00,                   !- Time 8 {hh:mm}
-    0.1,                     !- Value Until Time 8
-    24:00,                   !- Time 9 {hh:mm}
-    0.05;                    !- Value Until Time 9
-
-Schedule:Day:Interval,
-    Small Office Bldg Occ Rule 1 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office Bldg Occ Rule 2 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    08:00,                   !- Time 2 {hh:mm}
-    0.1,                     !- Value Until Time 2
-    12:00,                   !- Time 3 {hh:mm}
-    0.3,                     !- Value Until Time 3
-    17:00,                   !- Time 4 {hh:mm}
-    0.1,                     !- Value Until Time 4
-    24:00,                   !- Time 5 {hh:mm}
-    0;                       !- Value Until Time 5
-
-Schedule:Day:Interval,
-    Small Office Bldg Occ Summer Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    0,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    1,                       !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    0.05;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office Bldg Occ Winter Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    0;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office ClgSetp Default Schedule,  !- Name
-    Temperature 4,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    26.7,                    !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    24,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    26.7;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office ClgSetp Rule 1 Day Schedule,  !- Name
-    Temperature 4,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    26.7;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office ClgSetp Rule 2 Day Schedule,  !- Name
-    Temperature 4,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    26.7,                    !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    24,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    26.7;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office ClgSetp Summer Design Day,  !- Name
-    Temperature 4,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    26.7,                    !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    24,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    26.7;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office ClgSetp Winter Design Day,  !- Name
-    Temperature 4,           !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    26.7;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office HtgSetp Default Schedule,  !- Name
-    Temperature 11,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    15.6,                    !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    21,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    15.6;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office HtgSetp Rule 1 Day Schedule,  !- Name
-    Temperature 11,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    15.6;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office HtgSetp Rule 2 Day Schedule,  !- Name
-    Temperature 11,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    15.6,                    !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    21,                      !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    15.6;                    !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office HtgSetp Summer Design Day,  !- Name
-    Temperature 11,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    15.6;                    !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office HtgSetp Winter Design Day,  !- Name
-    Temperature 11,          !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    21;                      !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office Infil Quarter On Default Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office Infil Quarter On Rule 1 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    24:00,                   !- Time 1 {hh:mm}
-    1;                       !- Value Until Time 1
-
-Schedule:Day:Interval,
-    Small Office Infil Quarter On Rule 2 Day Schedule,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office Infil Quarter On Summer Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    22:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-Schedule:Day:Interval,
-    Small Office Infil Quarter On Winter Design Day,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    No,                      !- Interpolate to Timestep
-    06:00,                   !- Time 1 {hh:mm}
-    1,                       !- Value Until Time 1
-    18:00,                   !- Time 2 {hh:mm}
-    0.25,                    !- Value Until Time 2
-    24:00,                   !- Time 3 {hh:mm}
-    1;                       !- Value Until Time 3
-
-
-!-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:WEEK:DAILY ===========
-
-Schedule:Week:Daily,
-    Large Office Activity Week Rule - Jan1-Dec31,  !- Name
-    Large Office Activity Default Schedule,  !- Sunday Schedule:Day Name
-    Large Office Activity Default Schedule,  !- Monday Schedule:Day Name
-    Large Office Activity Default Schedule,  !- Tuesday Schedule:Day Name
-    Large Office Activity Default Schedule,  !- Wednesday Schedule:Day Name
-    Large Office Activity Default Schedule,  !- Thursday Schedule:Day Name
-    Large Office Activity Default Schedule,  !- Friday Schedule:Day Name
-    Large Office Activity Default Schedule,  !- Saturday Schedule:Day Name
-    Large Office Activity Default Schedule,  !- Holiday Schedule:Day Name
-    Large Office Activity Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Large Office Activity Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Large Office Activity Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Large Office Activity Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Large Office Bldg Equip Week Rule - Jan1-Dec31,  !- Name
-    Large Office Bldg Equip Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Large Office Bldg Equip Default Schedule,  !- Monday Schedule:Day Name
-    Large Office Bldg Equip Default Schedule,  !- Tuesday Schedule:Day Name
-    Large Office Bldg Equip Default Schedule,  !- Wednesday Schedule:Day Name
-    Large Office Bldg Equip Default Schedule,  !- Thursday Schedule:Day Name
-    Large Office Bldg Equip Default Schedule,  !- Friday Schedule:Day Name
-    Large Office Bldg Equip Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Large Office Bldg Equip Default Schedule,  !- Holiday Schedule:Day Name
-    Large Office Bldg Equip Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Large Office Bldg Equip Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Large Office Bldg Equip Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Large Office Bldg Equip Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Large Office Bldg Light Week Rule - Jan1-Dec31,  !- Name
-    Large Office Bldg Light Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Large Office Bldg Light Default Schedule,  !- Monday Schedule:Day Name
-    Large Office Bldg Light Default Schedule,  !- Tuesday Schedule:Day Name
-    Large Office Bldg Light Default Schedule,  !- Wednesday Schedule:Day Name
-    Large Office Bldg Light Default Schedule,  !- Thursday Schedule:Day Name
-    Large Office Bldg Light Default Schedule,  !- Friday Schedule:Day Name
-    Large Office Bldg Light Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Large Office Bldg Light Default Schedule,  !- Holiday Schedule:Day Name
-    Large Office Bldg Light Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Large Office Bldg Light Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Large Office Bldg Light Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Large Office Bldg Light Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Large Office Bldg Occ Week Rule - Jan1-Dec31,  !- Name
-    Large Office Bldg Occ Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Large Office Bldg Occ Default Schedule,  !- Monday Schedule:Day Name
-    Large Office Bldg Occ Default Schedule,  !- Tuesday Schedule:Day Name
-    Large Office Bldg Occ Default Schedule,  !- Wednesday Schedule:Day Name
-    Large Office Bldg Occ Default Schedule,  !- Thursday Schedule:Day Name
-    Large Office Bldg Occ Default Schedule,  !- Friday Schedule:Day Name
-    Large Office Bldg Occ Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Large Office Bldg Occ Default Schedule,  !- Holiday Schedule:Day Name
-    Large Office Bldg Occ Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Large Office Bldg Occ Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Large Office Bldg Occ Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Large Office Bldg Occ Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Large Office ClgSetp Week Rule - Jan1-Dec31,  !- Name
-    Large Office ClgSetp Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Large Office ClgSetp Default Schedule,  !- Monday Schedule:Day Name
-    Large Office ClgSetp Default Schedule,  !- Tuesday Schedule:Day Name
-    Large Office ClgSetp Default Schedule,  !- Wednesday Schedule:Day Name
-    Large Office ClgSetp Default Schedule,  !- Thursday Schedule:Day Name
-    Large Office ClgSetp Default Schedule,  !- Friday Schedule:Day Name
-    Large Office ClgSetp Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Large Office ClgSetp Default Schedule,  !- Holiday Schedule:Day Name
-    Large Office ClgSetp Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Large Office ClgSetp Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Large Office ClgSetp Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Large Office ClgSetp Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Large Office HtgSetp Week Rule - Jan1-Dec31,  !- Name
-    Large Office HtgSetp Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Large Office HtgSetp Default Schedule,  !- Monday Schedule:Day Name
-    Large Office HtgSetp Default Schedule,  !- Tuesday Schedule:Day Name
-    Large Office HtgSetp Default Schedule,  !- Wednesday Schedule:Day Name
-    Large Office HtgSetp Default Schedule,  !- Thursday Schedule:Day Name
-    Large Office HtgSetp Default Schedule,  !- Friday Schedule:Day Name
-    Large Office HtgSetp Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Large Office HtgSetp Default Schedule,  !- Holiday Schedule:Day Name
-    Large Office HtgSetp Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Large Office HtgSetp Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Large Office HtgSetp Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Large Office HtgSetp Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Large Office Infil Quarter On Week Rule - Jan1-Dec31,  !- Name
-    Large Office Infil Quarter On Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Large Office Infil Quarter On Default Schedule,  !- Monday Schedule:Day Name
-    Large Office Infil Quarter On Default Schedule,  !- Tuesday Schedule:Day Name
-    Large Office Infil Quarter On Default Schedule,  !- Wednesday Schedule:Day Name
-    Large Office Infil Quarter On Default Schedule,  !- Thursday Schedule:Day Name
-    Large Office Infil Quarter On Default Schedule,  !- Friday Schedule:Day Name
-    Large Office Infil Quarter On Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Large Office Infil Quarter On Default Schedule,  !- Holiday Schedule:Day Name
-    Large Office Infil Quarter On Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Large Office Infil Quarter On Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Large Office Infil Quarter On Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Large Office Infil Quarter On Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Medium Office Activity Week Rule - Jan1-Dec31,  !- Name
-    Medium Office Activity Default Schedule,  !- Sunday Schedule:Day Name
-    Medium Office Activity Default Schedule,  !- Monday Schedule:Day Name
-    Medium Office Activity Default Schedule,  !- Tuesday Schedule:Day Name
-    Medium Office Activity Default Schedule,  !- Wednesday Schedule:Day Name
-    Medium Office Activity Default Schedule,  !- Thursday Schedule:Day Name
-    Medium Office Activity Default Schedule,  !- Friday Schedule:Day Name
-    Medium Office Activity Default Schedule,  !- Saturday Schedule:Day Name
-    Medium Office Activity Default Schedule,  !- Holiday Schedule:Day Name
-    Medium Office Activity Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Medium Office Activity Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Medium Office Activity Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Medium Office Activity Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Medium Office Bldg Equip Week Rule - Jan1-Dec31,  !- Name
-    Medium Office Bldg Equip Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Medium Office Bldg Equip Default Schedule,  !- Monday Schedule:Day Name
-    Medium Office Bldg Equip Default Schedule,  !- Tuesday Schedule:Day Name
-    Medium Office Bldg Equip Default Schedule,  !- Wednesday Schedule:Day Name
-    Medium Office Bldg Equip Default Schedule,  !- Thursday Schedule:Day Name
-    Medium Office Bldg Equip Default Schedule,  !- Friday Schedule:Day Name
-    Medium Office Bldg Equip Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Medium Office Bldg Equip Default Schedule,  !- Holiday Schedule:Day Name
-    Medium Office Bldg Equip Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Medium Office Bldg Equip Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Medium Office Bldg Equip Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Medium Office Bldg Equip Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Medium Office Bldg Occ Week Rule - Jan1-Dec31,  !- Name
-    Medium Office Bldg Occ Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Medium Office Bldg Occ Default Schedule,  !- Monday Schedule:Day Name
-    Medium Office Bldg Occ Default Schedule,  !- Tuesday Schedule:Day Name
-    Medium Office Bldg Occ Default Schedule,  !- Wednesday Schedule:Day Name
-    Medium Office Bldg Occ Default Schedule,  !- Thursday Schedule:Day Name
-    Medium Office Bldg Occ Default Schedule,  !- Friday Schedule:Day Name
-    Medium Office Bldg Occ Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Medium Office Bldg Occ Default Schedule,  !- Holiday Schedule:Day Name
-    Medium Office Bldg Occ Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Medium Office Bldg Occ Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Medium Office Bldg Occ Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Medium Office Bldg Occ Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Medium Office ClgSetp Week Rule - Jan1-Dec31,  !- Name
-    Medium Office ClgSetp Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Medium Office ClgSetp Default Schedule,  !- Monday Schedule:Day Name
-    Medium Office ClgSetp Default Schedule,  !- Tuesday Schedule:Day Name
-    Medium Office ClgSetp Default Schedule,  !- Wednesday Schedule:Day Name
-    Medium Office ClgSetp Default Schedule,  !- Thursday Schedule:Day Name
-    Medium Office ClgSetp Default Schedule,  !- Friday Schedule:Day Name
-    Medium Office ClgSetp Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Medium Office ClgSetp Default Schedule,  !- Holiday Schedule:Day Name
-    Medium Office ClgSetp Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Medium Office ClgSetp Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Medium Office ClgSetp Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Medium Office ClgSetp Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Medium Office HtgSetp Week Rule - Jan1-Dec31,  !- Name
-    Medium Office HtgSetp Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Medium Office HtgSetp Default Schedule,  !- Monday Schedule:Day Name
-    Medium Office HtgSetp Default Schedule,  !- Tuesday Schedule:Day Name
-    Medium Office HtgSetp Default Schedule,  !- Wednesday Schedule:Day Name
-    Medium Office HtgSetp Default Schedule,  !- Thursday Schedule:Day Name
-    Medium Office HtgSetp Default Schedule,  !- Friday Schedule:Day Name
-    Medium Office HtgSetp Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Medium Office HtgSetp Default Schedule,  !- Holiday Schedule:Day Name
-    Medium Office HtgSetp Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Medium Office HtgSetp Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Medium Office HtgSetp Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Medium Office HtgSetp Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Medium Office Infil Quarter On Week Rule - Jan1-Dec31,  !- Name
-    Medium Office Infil Quarter On Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Medium Office Infil Quarter On Default Schedule,  !- Monday Schedule:Day Name
-    Medium Office Infil Quarter On Default Schedule,  !- Tuesday Schedule:Day Name
-    Medium Office Infil Quarter On Default Schedule,  !- Wednesday Schedule:Day Name
-    Medium Office Infil Quarter On Default Schedule,  !- Thursday Schedule:Day Name
-    Medium Office Infil Quarter On Default Schedule,  !- Friday Schedule:Day Name
-    Medium Office Infil Quarter On Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Medium Office Infil Quarter On Default Schedule,  !- Holiday Schedule:Day Name
-    Medium Office Infil Quarter On Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Medium Office Infil Quarter On Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Medium Office Infil Quarter On Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Medium Office Infil Quarter On Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Office Activity Week Rule - Jan1-Dec31,  !- Name
-    Office Activity Default Schedule,  !- Sunday Schedule:Day Name
-    Office Activity Default Schedule,  !- Monday Schedule:Day Name
-    Office Activity Default Schedule,  !- Tuesday Schedule:Day Name
-    Office Activity Default Schedule,  !- Wednesday Schedule:Day Name
-    Office Activity Default Schedule,  !- Thursday Schedule:Day Name
-    Office Activity Default Schedule,  !- Friday Schedule:Day Name
-    Office Activity Default Schedule,  !- Saturday Schedule:Day Name
-    Office Activity Default Schedule,  !- Holiday Schedule:Day Name
-    Office Activity Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Office Activity Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Office Activity Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Office Activity Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Office Bldg Equip Week Rule - Jan1-Dec31,  !- Name
-    Office Bldg Equip Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Office Bldg Equip Default Schedule,  !- Monday Schedule:Day Name
-    Office Bldg Equip Default Schedule,  !- Tuesday Schedule:Day Name
-    Office Bldg Equip Default Schedule,  !- Wednesday Schedule:Day Name
-    Office Bldg Equip Default Schedule,  !- Thursday Schedule:Day Name
-    Office Bldg Equip Default Schedule,  !- Friday Schedule:Day Name
-    Office Bldg Equip Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Office Bldg Equip Default Schedule,  !- Holiday Schedule:Day Name
-    Office Bldg Equip Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Office Bldg Equip Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Office Bldg Equip Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Office Bldg Equip Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Office Bldg Light Week Rule - Jan1-Dec31,  !- Name
-    Office Bldg Light Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Office Bldg Light Default Schedule,  !- Monday Schedule:Day Name
-    Office Bldg Light Default Schedule,  !- Tuesday Schedule:Day Name
-    Office Bldg Light Default Schedule,  !- Wednesday Schedule:Day Name
-    Office Bldg Light Default Schedule,  !- Thursday Schedule:Day Name
-    Office Bldg Light Default Schedule,  !- Friday Schedule:Day Name
-    Office Bldg Light Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Office Bldg Light Default Schedule,  !- Holiday Schedule:Day Name
-    Office Bldg Light Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Office Bldg Light Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Office Bldg Light Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Office Bldg Light Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Office Infil Quarter On Week Rule - Jan1-Dec31,  !- Name
-    Office Infil Quarter On Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Office Infil Quarter On Default Schedule,  !- Monday Schedule:Day Name
-    Office Infil Quarter On Default Schedule,  !- Tuesday Schedule:Day Name
-    Office Infil Quarter On Default Schedule,  !- Wednesday Schedule:Day Name
-    Office Infil Quarter On Default Schedule,  !- Thursday Schedule:Day Name
-    Office Infil Quarter On Default Schedule,  !- Friday Schedule:Day Name
-    Office Infil Quarter On Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Office Infil Quarter On Default Schedule,  !- Holiday Schedule:Day Name
-    Office Infil Quarter On Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Office Infil Quarter On Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Office Infil Quarter On Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Office Infil Quarter On Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Office Misc Occ Week Rule - Jan1-Dec31,  !- Name
-    Office Bldg Occ Rule 1 Day Schedule 1,  !- Sunday Schedule:Day Name
-    Office Bldg Occ Default Schedule 1,  !- Monday Schedule:Day Name
-    Office Bldg Occ Default Schedule 1,  !- Tuesday Schedule:Day Name
-    Office Bldg Occ Default Schedule 1,  !- Wednesday Schedule:Day Name
-    Office Bldg Occ Default Schedule 1,  !- Thursday Schedule:Day Name
-    Office Bldg Occ Default Schedule 1,  !- Friday Schedule:Day Name
-    Office Bldg Occ Rule 2 Day Schedule 1,  !- Saturday Schedule:Day Name
-    Office Bldg Occ Default Schedule 1,  !- Holiday Schedule:Day Name
-    Office Bldg Occ Summer Design Day 1,  !- SummerDesignDay Schedule:Day Name
-    Office Bldg Occ Winter Design Day 1,  !- WinterDesignDay Schedule:Day Name
-    Office Bldg Occ Default Schedule 1,  !- CustomDay1 Schedule:Day Name
-    Office Bldg Occ Default Schedule 1;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Office Work Occ Week Rule - Jan1-Dec31,  !- Name
-    Office Bldg Occ Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Office Bldg Occ Default Schedule,  !- Monday Schedule:Day Name
-    Office Bldg Occ Default Schedule,  !- Tuesday Schedule:Day Name
-    Office Bldg Occ Default Schedule,  !- Wednesday Schedule:Day Name
-    Office Bldg Occ Default Schedule,  !- Thursday Schedule:Day Name
-    Office Bldg Occ Default Schedule,  !- Friday Schedule:Day Name
-    Office Bldg Occ Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Office Bldg Occ Default Schedule,  !- Holiday Schedule:Day Name
-    Office Bldg Occ Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Office Bldg Occ Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Office Bldg Occ Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Office Bldg Occ Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Small Office Activity Week Rule - Jan1-Dec31,  !- Name
-    Small Office Activity Default Schedule,  !- Sunday Schedule:Day Name
-    Small Office Activity Default Schedule,  !- Monday Schedule:Day Name
-    Small Office Activity Default Schedule,  !- Tuesday Schedule:Day Name
-    Small Office Activity Default Schedule,  !- Wednesday Schedule:Day Name
-    Small Office Activity Default Schedule,  !- Thursday Schedule:Day Name
-    Small Office Activity Default Schedule,  !- Friday Schedule:Day Name
-    Small Office Activity Default Schedule,  !- Saturday Schedule:Day Name
-    Small Office Activity Default Schedule,  !- Holiday Schedule:Day Name
-    Small Office Activity Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Small Office Activity Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Small Office Activity Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Small Office Activity Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Small Office Bldg Equip Week Rule - Jan1-Dec31,  !- Name
-    Small Office Bldg Equip Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Small Office Bldg Equip Default Schedule,  !- Monday Schedule:Day Name
-    Small Office Bldg Equip Default Schedule,  !- Tuesday Schedule:Day Name
-    Small Office Bldg Equip Default Schedule,  !- Wednesday Schedule:Day Name
-    Small Office Bldg Equip Default Schedule,  !- Thursday Schedule:Day Name
-    Small Office Bldg Equip Default Schedule,  !- Friday Schedule:Day Name
-    Small Office Bldg Equip Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Small Office Bldg Equip Default Schedule,  !- Holiday Schedule:Day Name
-    Small Office Bldg Equip Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Small Office Bldg Equip Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Small Office Bldg Equip Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Small Office Bldg Equip Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Small Office Bldg Occ Week Rule - Jan1-Dec31,  !- Name
-    Small Office Bldg Occ Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Small Office Bldg Occ Default Schedule,  !- Monday Schedule:Day Name
-    Small Office Bldg Occ Default Schedule,  !- Tuesday Schedule:Day Name
-    Small Office Bldg Occ Default Schedule,  !- Wednesday Schedule:Day Name
-    Small Office Bldg Occ Default Schedule,  !- Thursday Schedule:Day Name
-    Small Office Bldg Occ Default Schedule,  !- Friday Schedule:Day Name
-    Small Office Bldg Occ Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Small Office Bldg Occ Default Schedule,  !- Holiday Schedule:Day Name
-    Small Office Bldg Occ Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Small Office Bldg Occ Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Small Office Bldg Occ Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Small Office Bldg Occ Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Small Office ClgSetp Week Rule - Jan1-Dec31,  !- Name
-    Small Office ClgSetp Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Small Office ClgSetp Default Schedule,  !- Monday Schedule:Day Name
-    Small Office ClgSetp Default Schedule,  !- Tuesday Schedule:Day Name
-    Small Office ClgSetp Default Schedule,  !- Wednesday Schedule:Day Name
-    Small Office ClgSetp Default Schedule,  !- Thursday Schedule:Day Name
-    Small Office ClgSetp Default Schedule,  !- Friday Schedule:Day Name
-    Small Office ClgSetp Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Small Office ClgSetp Default Schedule,  !- Holiday Schedule:Day Name
-    Small Office ClgSetp Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Small Office ClgSetp Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Small Office ClgSetp Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Small Office ClgSetp Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Small Office HtgSetp Week Rule - Jan1-Dec31,  !- Name
-    Small Office HtgSetp Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Small Office HtgSetp Default Schedule,  !- Monday Schedule:Day Name
-    Small Office HtgSetp Default Schedule,  !- Tuesday Schedule:Day Name
-    Small Office HtgSetp Default Schedule,  !- Wednesday Schedule:Day Name
-    Small Office HtgSetp Default Schedule,  !- Thursday Schedule:Day Name
-    Small Office HtgSetp Default Schedule,  !- Friday Schedule:Day Name
-    Small Office HtgSetp Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Small Office HtgSetp Default Schedule,  !- Holiday Schedule:Day Name
-    Small Office HtgSetp Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Small Office HtgSetp Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Small Office HtgSetp Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Small Office HtgSetp Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-Schedule:Week:Daily,
-    Small Office Infil Quarter On Week Rule - Jan1-Dec31,  !- Name
-    Small Office Infil Quarter On Rule 1 Day Schedule,  !- Sunday Schedule:Day Name
-    Small Office Infil Quarter On Default Schedule,  !- Monday Schedule:Day Name
-    Small Office Infil Quarter On Default Schedule,  !- Tuesday Schedule:Day Name
-    Small Office Infil Quarter On Default Schedule,  !- Wednesday Schedule:Day Name
-    Small Office Infil Quarter On Default Schedule,  !- Thursday Schedule:Day Name
-    Small Office Infil Quarter On Default Schedule,  !- Friday Schedule:Day Name
-    Small Office Infil Quarter On Rule 2 Day Schedule,  !- Saturday Schedule:Day Name
-    Small Office Infil Quarter On Default Schedule,  !- Holiday Schedule:Day Name
-    Small Office Infil Quarter On Summer Design Day,  !- SummerDesignDay Schedule:Day Name
-    Small Office Infil Quarter On Winter Design Day,  !- WinterDesignDay Schedule:Day Name
-    Small Office Infil Quarter On Default Schedule,  !- CustomDay1 Schedule:Day Name
-    Small Office Infil Quarter On Default Schedule;  !- CustomDay2 Schedule:Day Name
-
-
-!-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:YEAR ===========
-
-Schedule:Year,
-    Large Office Activity,   !- Name
-    ActivityLevel 5,         !- Schedule Type Limits Name
-    Large Office Activity Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Large Office Bldg Equip, !- Name
-    Fractional,              !- Schedule Type Limits Name
-    Large Office Bldg Equip Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Large Office Bldg Light, !- Name
-    Fractional,              !- Schedule Type Limits Name
-    Large Office Bldg Light Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Large Office Bldg Occ,   !- Name
-    Fractional,              !- Schedule Type Limits Name
-    Large Office Bldg Occ Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Large Office ClgSetp,    !- Name
-    Temperature 5,           !- Schedule Type Limits Name
-    Large Office ClgSetp Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Large Office HtgSetp,    !- Name
-    Temperature 3,           !- Schedule Type Limits Name
-    Large Office HtgSetp Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Large Office Infil Quarter On,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    Large Office Infil Quarter On Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Medium Office Activity,  !- Name
-    ActivityLevel 13,        !- Schedule Type Limits Name
-    Medium Office Activity Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Medium Office Bldg Equip,!- Name
-    Fraction,                !- Schedule Type Limits Name
-    Medium Office Bldg Equip Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Medium Office Bldg Occ,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    Medium Office Bldg Occ Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Medium Office ClgSetp,   !- Name
-    Temperature 37,          !- Schedule Type Limits Name
-    Medium Office ClgSetp Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Medium Office HtgSetp,   !- Name
-    Temperature 36,          !- Schedule Type Limits Name
-    Medium Office HtgSetp Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Medium Office Infil Quarter On,  !- Name
-    Fraction,                !- Schedule Type Limits Name
-    Medium Office Infil Quarter On Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Office Activity,         !- Name
-    ActivityLevel,           !- Schedule Type Limits Name
-    Office Activity Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Office Bldg Equip,       !- Name
-    Fraction,                !- Schedule Type Limits Name
-    Office Bldg Equip Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Office Bldg Light,       !- Name
-    Fraction,                !- Schedule Type Limits Name
-    Office Bldg Light Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Office Infil Quarter On, !- Name
-    Fraction,                !- Schedule Type Limits Name
-    Office Infil Quarter On Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Office Misc Occ,         !- Name
-    Fraction,                !- Schedule Type Limits Name
-    Office Misc Occ Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Office Work Occ,         !- Name
-    Fraction,                !- Schedule Type Limits Name
-    Office Work Occ Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Small Office Activity,   !- Name
-    ActivityLevel 12,        !- Schedule Type Limits Name
-    Small Office Activity Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Small Office Bldg Equip, !- Name
-    Fractional,              !- Schedule Type Limits Name
-    Small Office Bldg Equip Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Small Office Bldg Occ,   !- Name
-    Fractional,              !- Schedule Type Limits Name
-    Small Office Bldg Occ Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Small Office ClgSetp,    !- Name
-    Temperature 4,           !- Schedule Type Limits Name
-    Small Office ClgSetp Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Small Office HtgSetp,    !- Name
-    Temperature 11,          !- Schedule Type Limits Name
-    Small Office HtgSetp Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
-
-Schedule:Year,
-    Small Office Infil Quarter On,  !- Name
-    Fractional,              !- Schedule Type Limits Name
-    Small Office Infil Quarter On Week Rule - Jan1-Dec31,  !- Schedule:Week Name 1
-    1,                       !- Start Month 1
-    1,                       !- Start Day 1
-    12,                      !- End Month 1
-    31;                      !- End Day 1
+ScheduleTypeLimits,
+    Percent,                 !- Name
+    0,                       !- Lower Limit Value
+    100,                     !- Upper Limit Value
+    Continuous,              !- Numeric Type
+    percent;                 !- Unit Type
+
+ScheduleTypeLimits,
+    Integer,                 !- Name
+    0,                       !- Lower Limit Value
+    1000,                    !- Upper Limit Value
+    Discrete;                !- Numeric Type
+
+ScheduleTypeLimits,
+    Temperature,             !- Name
+    0,                       !- Lower Limit Value
+    100,                     !- Upper Limit Value
+    Continuous,              !- Numeric Type
+    temperature;             !- Unit Type
+
+ScheduleTypeLimits,
+    OnOff,                   !- Name
+    0,                       !- Lower Limit Value
+    1,                       !- Upper Limit Value
+    Discrete,                !- Numeric Type
+    availability;            !- Unit Type
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:COMPACT ===========
+
+Schedule:Compact,
+    Cafe_hsp,                !- Name
+    Percent,                 !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+     100;                    !- Field 4
+
+Schedule:Compact,
+    EvapZones_type,          !- Name
+    Integer,                 !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+    4;                       !- Field 4
+
+Schedule:Compact,
+    Cafe_tsp,                !- Name
+    Temperature,             !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+     10;                     !- Field 4
+
+Schedule:Compact,
+    BldgAvailable_Z1x,       !- Name
+    OnOff,                   !- Schedule Type Limits Name
+    Through: 2/28,           !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+    0,                       !- Field 4
+    Through: 12/31,          !- Field 5
+    For: Monday,             !- Field 6
+    Until: 13:50,            !- Field 7
+    0,                       !- Field 8
+    Until: 14:00,            !- Field 9
+     1,                      !- Field 10
+    Until: 14:10,            !- Field 11
+    0,                       !- Field 12
+    Until: 14:20,            !- Field 13
+    0,                       !- Field 14
+    Until: 14:30,            !- Field 15
+    0,                       !- Field 16
+    Until: 14:40,            !- Field 17
+    0,                       !- Field 18
+    Until: 14:50,            !- Field 19
+    0,                       !- Field 20
+    Until: 15:00,            !- Field 21
+    0,                       !- Field 22
+    Until: 15:10,            !- Field 23
+    0,                       !- Field 24
+    Until: 15:20,            !- Field 25
+    0,                       !- Field 26
+    Until: 24:00,            !- Field 27
+    0,                       !- Field 28
+    For: AllOtherDays,       !- Field 29
+    Until: 13:00,            !- Field 30
+    0,                       !- Field 31
+    Until: 13:10,            !- Field 32
+    1,                       !- Field 33
+    Until: 13:20,            !- Field 34
+    1,                       !- Field 35
+    Until: 13:30,            !- Field 36
+    1,                       !- Field 37
+    Until: 13:40,            !- Field 38
+    0,                       !- Field 39
+    Until: 13:50,            !- Field 40
+    0,                       !- Field 41
+    Until: 14:00,            !- Field 42
+    0,                       !- Field 43
+    Until: 14:10,            !- Field 44
+    1,                       !- Field 45
+    Until: 14:20,            !- Field 46
+    1,                       !- Field 47
+    Until: 14:30,            !- Field 48
+    1,                       !- Field 49
+    Until: 14:40,            !- Field 50
+    0,                       !- Field 51
+    Until: 14:50,            !- Field 52
+    0,                       !- Field 53
+    Until: 15:00,            !- Field 54
+    1,                       !- Field 55
+    Until: 15:10,            !- Field 56
+    1,                       !- Field 57
+    Until: 15:20,            !- Field 58
+    1,                       !- Field 59
+    Until: 15:30,            !- Field 60
+    1,                       !- Field 61
+    Until: 15:40,            !- Field 62
+    0,                       !- Field 63
+    Until: 15:50,            !- Field 64
+    0,                       !- Field 65
+    Until: 16:00,            !- Field 66
+    0,                       !- Field 67
+    Until: 24:00,            !- Field 68
+    0;                       !- Field 69
+
+Schedule:Compact,
+    BldgAvailable_Z1,        !- Name
+    OnOff,                   !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+     1;                      !- Field 4
 
 
 !-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:CONSTANT ===========
@@ -2925,7 +1215,7 @@ AirflowNetwork:SimulationControl,
     SurfaceAverageCalculation,  !- Wind Pressure Coefficient Type
     OpeningHeight,           !- Height Selection for Local Wind Pressure Calculation
     LowRise,                 !- Building Type
-    500,                     !- Maximum Number of Iterations {dimensionless}
+    30000,                   !- Maximum Number of Iterations {dimensionless}
     ZeroNodePressures,       !- Initialization Type
     0.0001,                  !- Relative Airflow Convergence Tolerance {dimensionless}
     0.000001,                !- Absolute Airflow Convergence Tolerance {kg/s}
@@ -2934,8 +1224,8 @@ AirflowNetwork:SimulationControl,
     0.71,                    !- Ratio of Building Width Along Short Axis to Width Along Long Axis
     No,                      !- Height Dependence of External Node Temperature
     SkylineLU,               !- Solver
-    ,                        !- Allow Unsupported Zone Equipment
-    ;                        !- Do Distribution Duct Sizing Calculation
+    No,                      !- Allow Unsupported Zone Equipment
+    No;                      !- Do Distribution Duct Sizing Calculation
 
 
 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:ZONE ===========
@@ -2944,7 +1234,7 @@ AirflowNetwork:MultiZone:Zone,
     Cafe,                    !- Zone Name
     Constant,                !- Ventilation Control Mode
     ,                        !- Ventilation Control Zone Temperature Setpoint Schedule Name
-    ,                        !- Minimum Venting Open Factor {dimensionless}
+    1,                       !- Minimum Venting Open Factor {dimensionless}
     ,                        !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
     100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
     ,                        !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
@@ -2958,12 +1248,12 @@ AirflowNetwork:MultiZone:Zone,
 
 AirflowNetwork:MultiZone:Surface,
     VEste,                   !- Surface Name
-    Aperturas_Ventanas,      !- Leakage Component Name
+    Aperturas_VEste,         !- Leakage Component Name
     ,                        !- External Node Name
     1,                       !- Window/Door Opening Factor, or Crack Factor {dimensionless}
-    ZoneLevel,               !- Ventilation Control Mode
+    Constant,                !- Ventilation Control Mode
     ,                        !- Ventilation Control Zone Temperature Setpoint Schedule Name
-    ,                        !- Minimum Venting Open Factor {dimensionless}
+    1,                       !- Minimum Venting Open Factor {dimensionless}
     ,                        !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
     100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
     ,                        !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
@@ -2975,12 +1265,12 @@ AirflowNetwork:MultiZone:Surface,
 
 AirflowNetwork:MultiZone:Surface,
     VOeste,                  !- Surface Name
-    Aperturas_Ventanas,      !- Leakage Component Name
+    Aperturas_VOeste,        !- Leakage Component Name
     ,                        !- External Node Name
     1,                       !- Window/Door Opening Factor, or Crack Factor {dimensionless}
-    ZoneLevel,               !- Ventilation Control Mode
+    Constant,                !- Ventilation Control Mode
     ,                        !- Ventilation Control Zone Temperature Setpoint Schedule Name
-    ,                        !- Minimum Venting Open Factor {dimensionless}
+    1,                       !- Minimum Venting Open Factor {dimensionless}
     ,                        !- Indoor and Outdoor Temperature Difference Lower Limit For Maximum Venting Open Factor {deltaC}
     100,                     !- Indoor and Outdoor Temperature Difference Upper Limit for Minimum Venting Open Factor {deltaC}
     ,                        !- Indoor and Outdoor Enthalpy Difference Lower Limit For Maximum Venting Open Factor {deltaJ/kg}
@@ -2991,28 +1281,10 @@ AirflowNetwork:MultiZone:Surface,
     1;                       !- Equivalent Rectangle Aspect Ratio {dimensionless}
 
 
-!-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:REFERENCECRACKCONDITIONS ===========
-
-AirflowNetwork:MultiZone:ReferenceCrackConditions,
-    Referencia,              !- Name
-    20,                      !- Reference Temperature {C}
-    87699.24,                !- Reference Barometric Pressure {Pa}
-    0.000000001;             !- Reference Humidity Ratio {kgWater/kgDryAir}
-
-
-!-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:SURFACE:CRACK ===========
-
-AirflowNetwork:MultiZone:Surface:Crack,
-    Infiltracion,            !- Name
-    0.5,                     !- Air Mass Flow Coefficient at Reference Conditions {kg/s}
-    0.65,                    !- Air Mass Flow Exponent {dimensionless}
-    Referencia;              !- Reference Crack Conditions
-
-
 !-   ===========  ALL OBJECTS IN CLASS: AIRFLOWNETWORK:MULTIZONE:COMPONENT:DETAILEDOPENING ===========
 
 AirflowNetwork:MultiZone:Component:DetailedOpening,
-    Aperturas_Ventanas,      !- Name
+    Aperturas_VEste,         !- Name
     0.001,                   !- Air Mass Flow Coefficient When Opening is Closed {kg/s-m}
     0.667,                   !- Air Mass Flow Exponent When Opening is Closed {dimensionless}
     NonPivoted,              !- Type of Rectangular Large Vertical Opening (LVO)
@@ -3024,7 +1296,25 @@ AirflowNetwork:MultiZone:Component:DetailedOpening,
     0,                       !- Height Factor for Opening Factor 1 {dimensionless}
     0,                       !- Start Height Factor for Opening Factor 1 {dimensionless}
     1,                       !- Opening Factor 2 {dimensionless}
-    0.5,                     !- Discharge Coefficient for Opening Factor 2 {dimensionless}
+    1,                       !- Discharge Coefficient for Opening Factor 2 {dimensionless}
+    1,                       !- Width Factor for Opening Factor 2 {dimensionless}
+    1,                       !- Height Factor for Opening Factor 2 {dimensionless}
+    0;                       !- Start Height Factor for Opening Factor 2 {dimensionless}
+
+AirflowNetwork:MultiZone:Component:DetailedOpening,
+    Aperturas_VOeste,        !- Name
+    0.001,                   !- Air Mass Flow Coefficient When Opening is Closed {kg/s-m}
+    0.667,                   !- Air Mass Flow Exponent When Opening is Closed {dimensionless}
+    NonPivoted,              !- Type of Rectangular Large Vertical Opening (LVO)
+    ,                        !- Extra Crack Length or Height of Pivoting Axis {m}
+    2,                       !- Number of Sets of Opening Factor Data
+    0,                       !- Opening Factor 1 {dimensionless}
+    0.001,                   !- Discharge Coefficient for Opening Factor 1 {dimensionless}
+    0,                       !- Width Factor for Opening Factor 1 {dimensionless}
+    0,                       !- Height Factor for Opening Factor 1 {dimensionless}
+    0,                       !- Start Height Factor for Opening Factor 1 {dimensionless}
+    1,                       !- Opening Factor 2 {dimensionless}
+    1,                       !- Discharge Coefficient for Opening Factor 2 {dimensionless}
     1,                       !- Width Factor for Opening Factor 2 {dimensionless}
     1,                       !- Height Factor for Opening Factor 2 {dimensionless}
     0;                       !- Start Height Factor for Opening Factor 2 {dimensionless}
@@ -3037,37 +1327,93 @@ Sizing:Parameters,
     1.15;                    !- Cooling Sizing Factor
 
 
+!-   ===========  ALL OBJECTS IN CLASS: ZONECONTROL:HUMIDISTAT ===========
+
+ZoneControl:Humidistat,
+    Cafe_hmt,                !- Name
+    Cafe,                    !- Zone Name
+    Cafe_hsp,                !- Humidifying Relative Humidity Setpoint Schedule Name
+    Cafe_hsp;                !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONECONTROL:THERMOSTAT ===========
+
+ZoneControl:Thermostat,
+    Cafe_thmt,               !- Name
+    Cafe,                    !- Zone or ZoneList Name
+    EvapZones_type,          !- Control Type Schedule Name
+    ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
+    Cafe_tt;                 !- Control 1 Name
+
+
+!-   ===========  ALL OBJECTS IN CLASS: THERMOSTATSETPOINT:DUALSETPOINT ===========
+
+ThermostatSetpoint:DualSetpoint,
+    Cafe_tt,                 !- Name
+    Cafe_tsp,                !- Heating Setpoint Temperature Schedule Name
+    Cafe_tsp;                !- Cooling Setpoint Temperature Schedule Name
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONEHVAC:IDEALLOADSAIRSYSTEM ===========
+
+ZoneHVAC:IdealLoadsAirSystem,
+    Cafe_hvac,               !- Name
+    BldgAvailable_Z1,        !- Availability Schedule Name
+    Cafe_supp,               !- Zone Supply Air Node Name
+    ,                        !- Zone Exhaust Air Node Name
+    ,                        !- System Inlet Air Node Name
+    45,                      !- Maximum Heating Supply Air Temperature {C}
+    4,                       !- Minimum Cooling Supply Air Temperature {C}
+    0.2,                     !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    0.2,                     !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    NoLimit,                 !- Heating Limit
+    ,                        !- Maximum Heating Air Flow Rate {m3/s}
+    ,                        !- Maximum Sensible Heating Capacity {W}
+    NoLimit,                 !- Cooling Limit
+    ,                        !- Maximum Cooling Air Flow Rate {m3/s}
+    ,                        !- Maximum Total Cooling Capacity {W}
+    ,                        !- Heating Availability Schedule Name
+    ,                        !- Cooling Availability Schedule Name
+    None,                    !- Dehumidification Control Type
+    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
+    None,                    !- Humidification Control Type
+    ,                        !- Design Specification Outdoor Air Object Name
+    ,                        !- Outdoor Air Inlet Node Name
+    None,                    !- Demand Controlled Ventilation Type
+    NoEconomizer,            !- Outdoor Air Economizer Type
+    None,                    !- Heat Recovery Type
+    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
+    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONEHVAC:EQUIPMENTLIST ===========
+
+ZoneHVAC:EquipmentList,
+    Cafe_eqpm,               !- Name
+    SequentialLoad,          !- Load Distribution Scheme
+    ZoneHVAC:IdealLoadsAirSystem,  !- Zone Equipment 1 Object Type
+    Cafe_hvac,               !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ,                        !- Zone Equipment 1 Sequential Cooling Fraction Schedule Name
+    ;                        !- Zone Equipment 1 Sequential Heating Fraction Schedule Name
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONEHVAC:EQUIPMENTCONNECTIONS ===========
+
+ZoneHVAC:EquipmentConnections,
+    Cafe,                    !- Zone Name
+    Cafe_eqpm,               !- Zone Conditioning Equipment List Name
+    Cafe_supp,               !- Zone Air Inlet Node or NodeList Name
+    ,                        !- Zone Air Exhaust Node or NodeList Name
+    Cafe_node,               !- Zone Air Node Name
+    Cafe_retn;               !- Zone Return Air Node or NodeList Name
+
+
 !-   ===========  ALL OBJECTS IN CLASS: OUTDOORAIR:NODE ===========
 
 OutdoorAir:Node,
     Model Outdoor Air Node;  !- Name
-
-
-!-   ===========  ALL OBJECTS IN CLASS: LIFECYCLECOST:PARAMETERS ===========
-
-LifeCycleCost:Parameters,
-    Life Cycle Cost Parameters,  !- Name
-    EndOfYear,               !- Discounting Convention
-    ConstantDollar,          !- Inflation Approach
-    0.03,                    !- Real Discount Rate
-    ,                        !- Nominal Discount Rate
-    ,                        !- Inflation
-    ,                        !- Base Date Month
-    2011,                    !- Base Date Year
-    ,                        !- Service Date Month
-    2011,                    !- Service Date Year
-    25,                      !- Length of Study Period in Years
-    ,                        !- Tax rate
-    None;                    !- Depreciation Method
-
-
-!-   ===========  ALL OBJECTS IN CLASS: LIFECYCLECOST:NONRECURRINGCOST ===========
-
-LifeCycleCost:NonrecurringCost,
-    Default Cost,            !- Name
-    Construction,            !- Category
-    0,                       !- Cost
-    ServicePeriod;           !- Start of Costs
 
 
 !-   ===========  ALL OBJECTS IN CLASS: OUTPUT:VARIABLEDICTIONARY ===========
@@ -3087,13 +1433,6 @@ Output:Table:SummaryReports,
 
 OutputControl:Table:Style,
     HTML;                    !- Column Separator
-
-
-!-   ===========  ALL OBJECTS IN CLASS: OUTPUTCONTROL:REPORTINGTOLERANCES ===========
-
-OutputControl:ReportingTolerances,
-    0.2,                     !- Tolerance for Time Heating Setpoint Not Met {deltaC}
-    0.2;                     !- Tolerance for Time Cooling Setpoint Not Met {deltaC}
 
 
 !-   ===========  ALL OBJECTS IN CLASS: OUTPUT:VARIABLE ===========
@@ -3153,4 +1492,10 @@ Output:Variable,
 
 Output:SQLite,
     SimpleAndTabular;        !- Option Type
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:DIAGNOSTICS ===========
+
+Output:Diagnostics,
+    ;                        !- Key 1
 
