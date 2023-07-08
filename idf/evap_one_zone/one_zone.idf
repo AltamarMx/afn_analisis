@@ -235,7 +235,7 @@ Schedule:Compact,
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
     Until: 24:00,            !- Field 3
-     100;                    !- Field 4
+     30;                     !- Field 4
 
 Schedule:Compact,
     EvapZones_type,          !- Name
@@ -243,7 +243,7 @@ Schedule:Compact,
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
     Until: 24:00,            !- Field 3
-    4;                       !- Field 4
+     4;                      !- Field 4
 
 Schedule:Compact,
     Cafe_tsp,                !- Name
@@ -251,7 +251,7 @@ Schedule:Compact,
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
     Until: 24:00,            !- Field 3
-     10;                     !- Field 4
+     25;                     !- Field 4
 
 Schedule:Compact,
     BldgAvailable_Z1x,       !- Name
@@ -265,7 +265,7 @@ Schedule:Compact,
     Until: 13:50,            !- Field 7
     0,                       !- Field 8
     Until: 14:00,            !- Field 9
-     1,                      !- Field 10
+    1,                       !- Field 10
     Until: 14:10,            !- Field 11
     0,                       !- Field 12
     Until: 14:20,            !- Field 13
@@ -332,7 +332,7 @@ Schedule:Compact,
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
     Until: 24:00,            !- Field 3
-     1;                      !- Field 4
+    1;                       !- Field 4
 
 
 !-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:CONSTANT ===========
@@ -1323,8 +1323,8 @@ AirflowNetwork:MultiZone:Component:DetailedOpening,
 !-   ===========  ALL OBJECTS IN CLASS: SIZING:PARAMETERS ===========
 
 Sizing:Parameters,
-    1.25,                    !- Heating Sizing Factor
-    1.15;                    !- Cooling Sizing Factor
+    5,                       !- Heating Sizing Factor
+    5;                       !- Cooling Sizing Factor
 
 
 !-   ===========  ALL OBJECTS IN CLASS: ZONECONTROL:HUMIDISTAT ===========
@@ -1362,10 +1362,10 @@ ZoneHVAC:IdealLoadsAirSystem,
     Cafe_supp,               !- Zone Supply Air Node Name
     ,                        !- Zone Exhaust Air Node Name
     ,                        !- System Inlet Air Node Name
-    45,                      !- Maximum Heating Supply Air Temperature {C}
+    50,                      !- Maximum Heating Supply Air Temperature {C}
     4,                       !- Minimum Cooling Supply Air Temperature {C}
-    0.2,                     !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    0.2,                     !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    10,                      !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    10,                      !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
     NoLimit,                 !- Heating Limit
     ,                        !- Maximum Heating Air Flow Rate {m3/s}
     ,                        !- Maximum Sensible Heating Capacity {W}
@@ -1374,16 +1374,16 @@ ZoneHVAC:IdealLoadsAirSystem,
     ,                        !- Maximum Total Cooling Capacity {W}
     ,                        !- Heating Availability Schedule Name
     ,                        !- Cooling Availability Schedule Name
-    None,                    !- Dehumidification Control Type
-    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
-    None,                    !- Humidification Control Type
+    Humidistat,              !- Dehumidification Control Type
+    1,                       !- Cooling Sensible Heat Ratio {dimensionless}
+    Humidistat,              !- Humidification Control Type
     ,                        !- Design Specification Outdoor Air Object Name
     ,                        !- Outdoor Air Inlet Node Name
     None,                    !- Demand Controlled Ventilation Type
     NoEconomizer,            !- Outdoor Air Economizer Type
     None,                    !- Heat Recovery Type
-    0.7,                     !- Sensible Heat Recovery Effectiveness {dimensionless}
-    0.65;                    !- Latent Heat Recovery Effectiveness {dimensionless}
+    ,                        !- Sensible Heat Recovery Effectiveness {dimensionless}
+    ;                        !- Latent Heat Recovery Effectiveness {dimensionless}
 
 
 !-   ===========  ALL OBJECTS IN CLASS: ZONEHVAC:EQUIPMENTLIST ===========
