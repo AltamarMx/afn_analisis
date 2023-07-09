@@ -8,7 +8,7 @@
 !-   ===========  ALL OBJECTS IN CLASS: VERSION ===========
 
 Version,
-    23.1;                    !- Version Identifier
+    23.1.0;                  !- Version Identifier
 
 
 !-   ===========  ALL OBJECTS IN CLASS: SIMULATIONCONTROL ===========
@@ -57,7 +57,8 @@ HeatBalanceAlgorithm,
 
 ZoneAirHeatBalanceAlgorithm,
     ThirdOrderBackwardDifference,  !- Algorithm
-    No;                      !- Do Space Heat Balance for Sizing
+    No,                      !- Do Space Heat Balance for Sizing
+    Yes;                     !- Do Space Heat Balance for Simulation
 
 
 !-   ===========  ALL OBJECTS IN CLASS: ZONEAIRMASSFLOWCONSERVATION ===========
@@ -235,7 +236,7 @@ Schedule:Compact,
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
     Until: 24:00,            !- Field 3
-     30;                     !- Field 4
+     50;                     !- Field 4
 
 Schedule:Compact,
     EvapZones_type,          !- Name
@@ -243,7 +244,7 @@ Schedule:Compact,
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
     Until: 24:00,            !- Field 3
-     4;                      !- Field 4
+    4;                       !- Field 4
 
 Schedule:Compact,
     Cafe_tsp,                !- Name
@@ -251,80 +252,7 @@ Schedule:Compact,
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
     Until: 24:00,            !- Field 3
-     25;                     !- Field 4
-
-Schedule:Compact,
-    BldgAvailable_Z1x,       !- Name
-    OnOff,                   !- Schedule Type Limits Name
-    Through: 2/28,           !- Field 1
-    For: AllDays,            !- Field 2
-    Until: 24:00,            !- Field 3
-    0,                       !- Field 4
-    Through: 12/31,          !- Field 5
-    For: Monday,             !- Field 6
-    Until: 13:50,            !- Field 7
-    0,                       !- Field 8
-    Until: 14:00,            !- Field 9
-    1,                       !- Field 10
-    Until: 14:10,            !- Field 11
-    0,                       !- Field 12
-    Until: 14:20,            !- Field 13
-    0,                       !- Field 14
-    Until: 14:30,            !- Field 15
-    0,                       !- Field 16
-    Until: 14:40,            !- Field 17
-    0,                       !- Field 18
-    Until: 14:50,            !- Field 19
-    0,                       !- Field 20
-    Until: 15:00,            !- Field 21
-    0,                       !- Field 22
-    Until: 15:10,            !- Field 23
-    0,                       !- Field 24
-    Until: 15:20,            !- Field 25
-    0,                       !- Field 26
-    Until: 24:00,            !- Field 27
-    0,                       !- Field 28
-    For: AllOtherDays,       !- Field 29
-    Until: 13:00,            !- Field 30
-    0,                       !- Field 31
-    Until: 13:10,            !- Field 32
-    1,                       !- Field 33
-    Until: 13:20,            !- Field 34
-    1,                       !- Field 35
-    Until: 13:30,            !- Field 36
-    1,                       !- Field 37
-    Until: 13:40,            !- Field 38
-    0,                       !- Field 39
-    Until: 13:50,            !- Field 40
-    0,                       !- Field 41
-    Until: 14:00,            !- Field 42
-    0,                       !- Field 43
-    Until: 14:10,            !- Field 44
-    1,                       !- Field 45
-    Until: 14:20,            !- Field 46
-    1,                       !- Field 47
-    Until: 14:30,            !- Field 48
-    1,                       !- Field 49
-    Until: 14:40,            !- Field 50
-    0,                       !- Field 51
-    Until: 14:50,            !- Field 52
-    0,                       !- Field 53
-    Until: 15:00,            !- Field 54
-    1,                       !- Field 55
-    Until: 15:10,            !- Field 56
-    1,                       !- Field 57
-    Until: 15:20,            !- Field 58
-    1,                       !- Field 59
-    Until: 15:30,            !- Field 60
-    1,                       !- Field 61
-    Until: 15:40,            !- Field 62
-    0,                       !- Field 63
-    Until: 15:50,            !- Field 64
-    0,                       !- Field 65
-    Until: 16:00,            !- Field 66
-    0,                       !- Field 67
-    Until: 24:00,            !- Field 68
-    0;                       !- Field 69
+    25;                      !- Field 4
 
 Schedule:Compact,
     BldgAvailable_Z1,        !- Name
@@ -1362,10 +1290,10 @@ ZoneHVAC:IdealLoadsAirSystem,
     Cafe_supp,               !- Zone Supply Air Node Name
     ,                        !- Zone Exhaust Air Node Name
     ,                        !- System Inlet Air Node Name
-    50,                      !- Maximum Heating Supply Air Temperature {C}
+    80,                      !- Maximum Heating Supply Air Temperature {C}
     4,                       !- Minimum Cooling Supply Air Temperature {C}
-    10,                      !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
-    10,                      !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
+    ,                        !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
+    ,                        !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
     NoLimit,                 !- Heating Limit
     ,                        !- Maximum Heating Air Flow Rate {m3/s}
     ,                        !- Maximum Sensible Heating Capacity {W}
@@ -1375,7 +1303,7 @@ ZoneHVAC:IdealLoadsAirSystem,
     ,                        !- Heating Availability Schedule Name
     ,                        !- Cooling Availability Schedule Name
     Humidistat,              !- Dehumidification Control Type
-    1,                       !- Cooling Sensible Heat Ratio {dimensionless}
+    0.5,                     !- Cooling Sensible Heat Ratio {dimensionless}
     Humidistat,              !- Humidification Control Type
     ,                        !- Design Specification Outdoor Air Object Name
     ,                        !- Outdoor Air Inlet Node Name
@@ -1487,15 +1415,19 @@ Output:Variable,
     AFN Linkage Node 2 to Node 1 Volume Flow Rate,  !- Variable Name
     Timestep;                !- Reporting Frequency
 
+Output:Variable,
+    *,                       !- Key Value
+    Zone Ideal Loads Supply Air Total Heating Energy,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Zone Ideal Loads Supply Air Total Cooling Energy,  !- Variable Name
+    Timestep;                !- Reporting Frequency
+
 
 !-   ===========  ALL OBJECTS IN CLASS: OUTPUT:SQLITE ===========
 
 Output:SQLite,
     SimpleAndTabular;        !- Option Type
-
-
-!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:DIAGNOSTICS ===========
-
-Output:Diagnostics,
-    ;                        !- Key 1
 
