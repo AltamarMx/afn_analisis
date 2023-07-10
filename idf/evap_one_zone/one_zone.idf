@@ -236,7 +236,7 @@ Schedule:Compact,
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
     Until: 24:00,            !- Field 3
-     50;                     !- Field 4
+    50;                      !- Field 4
 
 Schedule:Compact,
     EvapZones_type,          !- Name
@@ -259,8 +259,12 @@ Schedule:Compact,
     OnOff,                   !- Schedule Type Limits Name
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
-    Until: 24:00,            !- Field 3
-    1;                       !- Field 4
+    Until: 12:00,            !- Field 3
+     0,                      !- Field 4
+    Until:12:10,             !- Field 5
+     1,                      !- Field 6
+    Until: 24:00,            !- Field 7
+     0;                      !- Field 8
 
 
 !-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:CONSTANT ===========
@@ -1290,8 +1294,8 @@ ZoneHVAC:IdealLoadsAirSystem,
     Cafe_supp,               !- Zone Supply Air Node Name
     ,                        !- Zone Exhaust Air Node Name
     ,                        !- System Inlet Air Node Name
-    80,                      !- Maximum Heating Supply Air Temperature {C}
-    4,                       !- Minimum Cooling Supply Air Temperature {C}
+    ,                        !- Maximum Heating Supply Air Temperature {C}
+    ,                        !- Minimum Cooling Supply Air Temperature {C}
     ,                        !- Maximum Heating Supply Air Humidity Ratio {kgWater/kgDryAir}
     ,                        !- Minimum Cooling Supply Air Humidity Ratio {kgWater/kgDryAir}
     NoLimit,                 !- Heating Limit
@@ -1303,12 +1307,12 @@ ZoneHVAC:IdealLoadsAirSystem,
     ,                        !- Heating Availability Schedule Name
     ,                        !- Cooling Availability Schedule Name
     Humidistat,              !- Dehumidification Control Type
-    0.5,                     !- Cooling Sensible Heat Ratio {dimensionless}
+    ,                        !- Cooling Sensible Heat Ratio {dimensionless}
     Humidistat,              !- Humidification Control Type
     ,                        !- Design Specification Outdoor Air Object Name
     ,                        !- Outdoor Air Inlet Node Name
     None,                    !- Demand Controlled Ventilation Type
-    NoEconomizer,            !- Outdoor Air Economizer Type
+    ,                        !- Outdoor Air Economizer Type
     None,                    !- Heat Recovery Type
     ,                        !- Sensible Heat Recovery Effectiveness {dimensionless}
     ;                        !- Latent Heat Recovery Effectiveness {dimensionless}
