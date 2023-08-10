@@ -217,8 +217,8 @@ ScheduleTypeLimits,
     Temperature,             !- Name
     0,                       !- Lower Limit Value
     100,                     !- Upper Limit Value
-    Continuous,              !- Numeric Type
-    temperature;             !- Unit Type
+    Discrete,                !- Numeric Type
+    Temperature;             !- Unit Type
 
 ScheduleTypeLimits,
     OnOff,                   !- Name
@@ -260,11 +260,11 @@ Schedule:Compact,
     Through: 12/31,          !- Field 1
     For: AllDays,            !- Field 2
     Until: 12:00,            !- Field 3
-     0,                      !- Field 4
+    0,                       !- Field 4
     Until:12:10,             !- Field 5
-     1,                      !- Field 6
+    1,                       !- Field 6
     Until: 24:00,            !- Field 7
-     0;                      !- Field 8
+    0;                       !- Field 8
 
 
 !-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:CONSTANT ===========
